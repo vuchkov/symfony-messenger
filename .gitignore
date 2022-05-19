@@ -18,3 +18,7 @@ yarn-error.log
 ###> CUSTOM ###
 public/uploads/images
 ###< CUSTOM ###
+
+###> PhpStorm ###
+/.idea/
+###< PhpStorm ###
