@@ -2,7 +2,11 @@ framework:
     messenger:
 #        default_bus: command.bus
 #
-#        buses:
+        buses:
+            messenger.bus.default:
+                default_middleware: true
+                middleware:
+                    - App\Messenger\AuditMiddleware
 #            command.bus:
 #                middleware:
 #                    - App\Messenger\AuditMiddleware
@@ -35,9 +39,10 @@ framework:
 #                        messages_normal:
 #                            binding_keys: [normal]
 
-#            async_priority_high:
-#                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
-#                options:
+            async_priority_high:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    queue_name: high
 #                    exchange:
 #                        name: messages
 #                        type: direct
@@ -65,5 +70,5 @@ framework:
 
         routing:
             # Route your messages to the transports
-            'App\Message\AddPonkaToImage': async
+            'App\Message\AddPonkaToImage': async_priority_high
             'App\Message\DeletePhotoFile': async
