@@ -21,8 +21,8 @@ framework:
             # https://symfony.com/doc/current/messenger.html#transports
             async:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
-#                retry_strategy:
-#                    delay: 500
+                retry_strategy:
+                    delay: 500
 #                options:
 #                    # Messenger will create then send to this exchange
 #                    exchange:
@@ -60,7 +60,7 @@ framework:
 #                        messages_from_external:
 #                            binding_keys: [from_external]
 
-#            failed: 'doctrine://default?queue_name=failed'
+            failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
 
         routing:
