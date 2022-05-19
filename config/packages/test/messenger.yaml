@@ -1,0 +1,7 @@
+framework:
+    messenger:
+        transports:
+            async: 'in-memory://'
+            async_priority_high:
+                dsn: 'in-memory://'
+                options: [  ]
