@@ -1,0 +1,7 @@
+framework:
+    messenger:
+#        transports:
+#            async: 'sync://'
+#            async_priority_high:
+#                dsn: 'sync://'
+#                options: [  ]
