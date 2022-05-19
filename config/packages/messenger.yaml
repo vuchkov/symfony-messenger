@@ -66,4 +66,4 @@ framework:
         routing:
             # Route your messages to the transports
             'App\Message\AddPonkaToImage': async
-#            'App\Message\Event\ImagePostDeletedEvent': async
+            'App\Message\DeletePhotoFile': async
