@@ -7,16 +7,16 @@ use App\Entity\ImagePost;
 class AddPonkaToImage
 {
 
-    private ImagePost $imagePost;
+    private int $imagePostId;
 
-    public function __construct(ImagePost $imagePost)
+    public function __construct(int $imagePostId)
     {
-        $this->imagePost = $imagePost;
+        $this->imagePostId = $imagePostId;
     }
 
-    public function getImagePost(): ImagePost
+    public function getImagePostId(): int
     {
-        $this->imagePost;
+        return $this->imagePostId;
     }
 
 }

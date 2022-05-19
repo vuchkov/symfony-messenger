@@ -1,0 +1,69 @@
+framework:
+    messenger:
+#        default_bus: command.bus
+#
+#        buses:
+#            command.bus:
+#                middleware:
+#                    - App\Messenger\AuditMiddleware
+#
+#            event.bus:
+#                default_middleware: allow_no_handlers
+#                middleware:
+#                    - App\Messenger\AuditMiddleware
+#
+#            query.bus: ~
+
+        # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
+        failure_transport: failed
+
+        transports:
+            # https://symfony.com/doc/current/messenger.html#transports
+            async:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+#                retry_strategy:
+#                    delay: 500
+#                options:
+#                    # Messenger will create then send to this exchange
+#                    exchange:
+#                        name: messages
+#                        type: direct
+#                        default_publish_routing_key: normal
+#                    # Messenger will create this queue & add binding keys
+#                    # The worker will know to consume from this queue
+#                    queues:
+#                        messages_normal:
+#                            binding_keys: [normal]
+
+#            async_priority_high:
+#                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+#                options:
+#                    exchange:
+#                        name: messages
+#                        type: direct
+#                        default_publish_routing_key: high
+#                    queues:
+#                        messages_high:
+#                            binding_keys: [high]
+
+            # a transport used consuming messages from an external system
+            # messages are not meant to be *sent* to this transport
+#            external_messages:
+#                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+#                serializer: App\Messenger\ExternalJsonMessageSerializer
+#                options:
+#                    exchange:
+#                        name: messages
+#                        type: direct
+#                        default_publish_routing_key: from_external
+#                    queues:
+#                        messages_from_external:
+#                            binding_keys: [from_external]
+
+#            failed: 'doctrine://default?queue_name=failed'
+            # sync: 'sync://'
+
+        routing:
+            # Route your messages to the transports
+            'App\Message\AddPonkaToImage': async
+#            'App\Message\Event\ImagePostDeletedEvent': async
