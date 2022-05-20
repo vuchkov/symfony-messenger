@@ -1,7 +1,7 @@
 framework:
     messenger:
-#        default_bus: command.bus
-#
+        default_bus: messenger.bus.default
+
         buses:
             messenger.bus.default:
                 default_middleware: true
@@ -11,8 +11,8 @@ framework:
 #                middleware:
 #                    - App\Messenger\AuditMiddleware
 #
-#            event.bus:
-#                default_middleware: allow_no_handlers
+            event.bus:
+                default_middleware: allow_no_handlers
 #                middleware:
 #                    - App\Messenger\AuditMiddleware
 #
@@ -71,4 +71,4 @@ framework:
         routing:
             # Route your messages to the transports
             'App\Message\AddPonkaToImage': async_priority_high
-            'App\Message\DeletePhotoFile': async
+            'App\Message\Event\ImagePostDeletedEvent': async
