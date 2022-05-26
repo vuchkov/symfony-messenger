@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Message;
+namespace App\Message\Command;
 
 use App\Entity\ImagePost;
 
 class DeleteImagePost
 {
 
-    private ImagePost $imagePost;
+    private $imagePost;
 
     public function __construct(ImagePost $imagePost)
     {

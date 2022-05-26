@@ -1,8 +1,8 @@
 <?php
 
-namespace App\MessageHandler;
+namespace App\MessageHandler\Command;
 
-use App\Message\AddPonkaToImage;
+use App\Message\Command\AddPonkaToImage;
 use App\Photo\PhotoFileManager;
 use App\Photo\PhotoPonkaficator;
 use App\Repository\ImagePostRepository;
@@ -15,10 +15,10 @@ class AddPonkaToImageHandler implements MessageHandlerInterface, LoggerAwareInte
 {
     use LoggerAwareTrait;
 
-    private PhotoPonkaficator $ponkaficator;
-    private PhotoFileManager $photoManager;
-    private EntityManager $entityManager;
-    private ImagePostRepository $imagePostRepository;
+    private $ponkaficator;
+    private $photoManager;
+    private $entityManager;
+    private $imagePostRepository;
 
     public function __construct(PhotoPonkaficator $ponkaficator, PhotoFileManager $photoManager, EntityManager $entityManager, ImagePostRepository $imagePostRepository)
     {

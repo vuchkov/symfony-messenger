@@ -70,5 +70,5 @@ framework:
 
         routing:
             # Route your messages to the transports
-            'App\Message\AddPonkaToImage': async_priority_high
+            'App\Message\Command\AddPonkaToImage': async_priority_high
             'App\Message\Event\ImagePostDeletedEvent': async
