@@ -19,6 +19,7 @@ yarn-error.log
 public/uploads/images
 ###< CUSTOM ###
 
-###> PhpStorm ###
-/.idea/
-###< PhpStorm ###
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###

@@ -13,7 +13,7 @@ services:
         bind:
             # keep in sync with flysystem.yaml settings
             $publicAssetBaseUrl: '/uploads/images'
-            $MessengerAuditLogger: '@monolog.logger.messenger_audit'
+            $messengerAuditLogger: '@monolog.logger.messenger_audit'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -27,20 +27,20 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\MessageHandle\Command\:
+    App\MessageHandler\Command\:
         resource: '../src/MessageHandler/Command'
         autoconfigure: false
-        tags: [{ name: messenger.message_handler, bus: messenger.bus.default }]
+        tags: [{ name: messenger.message_handler, bus: command.bus }]
 
-    App\MessageHandle\Event\:
+    App\MessageHandler\Event\:
         resource: '../src/MessageHandler/Event'
         autoconfigure: false
-        tags: [ { name: messenger.message_handler, bus: event.bus } ]
+        tags: [{ name: messenger.message_handler, bus: event.bus }]
 
-    App\MessageHandle\Query\:
+    App\MessageHandler\Query\:
         resource: '../src/MessageHandler/Query'
         autoconfigure: false
-        tags: [ { name: messenger.message_handler, bus: query.bus } ]
+        tags: [{ name: messenger.message_handler, bus: query.bus }]
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

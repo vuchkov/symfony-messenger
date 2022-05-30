@@ -4,4 +4,5 @@ namespace App\Message\Query;
 
 class GetTotalImageCount
 {
+
 }

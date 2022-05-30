@@ -17,6 +17,7 @@ class AuditMiddleware implements MiddlewareInterface
     {
         $this->logger = $messengerAuditLogger;
     }
+
     public function handle(Envelope $envelope, StackInterface $stack): Envelope
     {
         if (null === $envelope->last(UniqueIdStamp::class)) {
@@ -31,17 +32,17 @@ class AuditMiddleware implements MiddlewareInterface
             'class' => get_class($envelope->getMessage())
         ];
 
+
         $envelope = $stack->next()->handle($envelope, $stack);
 
         if ($envelope->last(ReceivedStamp::class)) {
             $this->logger->info('[{id}] Received {class}', $context);
         } elseif ($envelope->last(SentStamp::class)) {
-            $this->logger->info('[{id}] sent {class}', $context);
+            $this->logger->info('[{id}] Sent {class}', $context);
         } else {
             $this->logger->info('[{id}] Handling sync {class}', $context);
         }
 
         return $envelope;
     }
-
 }

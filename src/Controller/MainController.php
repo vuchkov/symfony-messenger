@@ -15,13 +15,14 @@ class MainController extends AbstractController
      */
     public function homepage(MessageBusInterface $queryBus)
     {
-        $envelop = $queryBus->dispatch(new GetTotalImageCount());
+        $envelope = $queryBus->dispatch(new GetTotalImageCount());
+
         /** @var HandledStamp $handled */
-        $handled = $envelop->last(HandledStamp::class);
+        $handled = $envelope->last(HandledStamp::class);
         $imageCount = $handled->getResult();
 
         return $this->render('main/homepage.html.twig', [
-            'imageCount' => $imageCount,
+            'imageCount' => $imageCount
         ]);
     }
 }

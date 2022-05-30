@@ -8,7 +8,7 @@ use Symfony\Component\Messenger\Transport\InMemoryTransport;
 
 class ImagePostControllerTest extends WebTestCase
 {
-    public function testCreat()
+    public function testCreate()
     {
         $client = static::createClient();
 
@@ -17,7 +17,7 @@ class ImagePostControllerTest extends WebTestCase
             'ryan-fabien.jpg'
         );
         $client->request('POST', '/api/images', [], [
-            'file' => $uploadedFile,
+            'file' => $uploadedFile
         ]);
 
         $this->assertResponseIsSuccessful();

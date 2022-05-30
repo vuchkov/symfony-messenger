@@ -6,8 +6,7 @@ use App\Entity\ImagePost;
 
 class AddPonkaToImage
 {
-
-    private int $imagePostId;
+    private $imagePostId;
 
     public function __construct(int $imagePostId)
     {
@@ -18,5 +17,4 @@ class AddPonkaToImage
     {
         return $this->imagePostId;
     }
-
 }

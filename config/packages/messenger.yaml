@@ -1,21 +1,17 @@
 framework:
     messenger:
-        default_bus: messenger.bus.default
+        default_bus: command.bus
 
         buses:
-            messenger.bus.default:
-                default_middleware: true
+            command.bus:
                 middleware:
                     - App\Messenger\AuditMiddleware
-#            command.bus:
-#                middleware:
-#                    - App\Messenger\AuditMiddleware
-#
+
             event.bus:
                 default_middleware: allow_no_handlers
-#                middleware:
-#                    - App\Messenger\AuditMiddleware
-#
+                middleware:
+                    - App\Messenger\AuditMiddleware
+
             query.bus: ~
 
         # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
@@ -27,43 +23,42 @@ framework:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
                 retry_strategy:
                     delay: 500
-#                options:
-#                    # Messenger will create then send to this exchange
-#                    exchange:
-#                        name: messages
-#                        type: direct
-#                        default_publish_routing_key: normal
-#                    # Messenger will create this queue & add binding keys
-#                    # The worker will know to consume from this queue
-#                    queues:
-#                        messages_normal:
-#                            binding_keys: [normal]
+                options:
+                    # Messenger will create then send to this exchange
+                    exchange:
+                        name: messages
+                        type: direct
+                        default_publish_routing_key: normal
+                    # Messenger will create this queue & add binding keys
+                    # The worker will know to consume from this queue
+                    queues:
+                        messages_normal:
+                            binding_keys: [normal]
 
             async_priority_high:
                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
                 options:
-                    queue_name: high
-#                    exchange:
-#                        name: messages
-#                        type: direct
-#                        default_publish_routing_key: high
-#                    queues:
-#                        messages_high:
-#                            binding_keys: [high]
+                    exchange:
+                        name: messages
+                        type: direct
+                        default_publish_routing_key: high
+                    queues:
+                        messages_high:
+                            binding_keys: [high]
 
             # a transport used consuming messages from an external system
             # messages are not meant to be *sent* to this transport
-#            external_messages:
-#                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
-#                serializer: App\Messenger\ExternalJsonMessageSerializer
-#                options:
-#                    exchange:
-#                        name: messages
-#                        type: direct
-#                        default_publish_routing_key: from_external
-#                    queues:
-#                        messages_from_external:
-#                            binding_keys: [from_external]
+            external_messages:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                serializer: App\Messenger\ExternalJsonMessageSerializer
+                options:
+                    exchange:
+                        name: messages
+                        type: direct
+                        default_publish_routing_key: from_external
+                    queues:
+                        messages_from_external:
+                            binding_keys: [from_external]
 
             failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
@@ -72,4 +67,3 @@ framework:
             # Route your messages to the transports
             'App\Message\Command\AddPonkaToImage': async_priority_high
             'App\Message\Event\ImagePostDeletedEvent': async
-            'App\Message\Command\DeleteImagePost': [async, async_priority_high]

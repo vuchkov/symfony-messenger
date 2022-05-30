@@ -4,9 +4,6 @@ namespace App\Message\Event;
 
 class ImagePostDeletedEvent
 {
-    /**
-     * @var string
-     */
     private $filename;
 
     public function __construct(string $filename)
@@ -14,13 +11,8 @@ class ImagePostDeletedEvent
         $this->filename = $filename;
     }
 
-    /**
-     * @return string
-     */
     public function getFilename(): string
     {
         return $this->filename;
     }
-
-
 }

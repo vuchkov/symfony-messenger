@@ -6,7 +6,6 @@ use App\Entity\ImagePost;
 
 class DeleteImagePost
 {
-
     private $imagePost;
 
     public function __construct(ImagePost $imagePost)
@@ -16,7 +15,6 @@ class DeleteImagePost
 
     public function getImagePost(): ImagePost
     {
-        $this->imagePost;
+        return $this->imagePost;
     }
-
 }

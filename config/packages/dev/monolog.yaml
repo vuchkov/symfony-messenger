@@ -9,7 +9,7 @@ monolog:
             type: stream
             path: "%kernel.logs_dir%/messenger.log"
             level: debug
-            channels: [ "messenger_audit" ]
+            channels: ["messenger_audit"]
         # uncomment to get logging in your browser
         # you may have to allow bigger header sizes in your Web server configuration
         #firephp:

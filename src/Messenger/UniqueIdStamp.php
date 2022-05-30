@@ -10,15 +10,11 @@ class UniqueIdStamp implements StampInterface
 
     public function __construct()
     {
-        $this->uniqueId = uniqid('', true);
+        $this->uniqueId = uniqid();
     }
 
-    /**
-     * @return string
-     */
     public function getUniqueId(): string
     {
         return $this->uniqueId;
     }
-
 }
